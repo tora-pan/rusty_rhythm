@@ -1,5 +1,4 @@
 use bevy::prelude::*;
-use bevy_kira_audio::prelude::*;
 use rusty_rhythm::*;
 use std::time::Duration;
 
@@ -13,39 +12,27 @@ fn main() {
             }),
             ..default()
         }))
-        .add_plugins(AudioPlugin)
         .insert_resource(NoteSpawnTimer {
             timer: Timer::new(Duration::from_secs_f32(0.1), TimerMode::Repeating), // Check every 0.1 seconds
+            lane_counter: 0,
             current_pattern: create_demo_pattern(),
             pattern_index: 0,
-            next_beat_time: 1.0, // First note hits target at 1 second (same as first metronome beat)
-            song_start_time: 1.0, // Song starts at 1 second
+            next_spawn_time: 1.0, // Start after 1 second
         })
         .insert_resource(GameScore {
             score: 0,
             streak: 0,
-        })
-        .insert_resource(Metronome {
-            next_beat_time: 1.0, // First beat at 1 second
-            song_start_time: 1.0,
-            is_active: true,
-            audio_handle: None, // Will be loaded later if needed
         })
         .add_systems(Startup, setup)
         .add_systems(Update, (
             handle_input, 
             spawn_notes, 
             move_notes, 
-            note_target_detection,
             cleanup_notes, 
             animate_button_press, 
             cleanup_score_text, 
             update_ui, 
-            handle_missed_notes,
-            metronome_system,
-            handle_metronome_flash,
+            handle_missed_notes
         ))
         .run();
-    
-    println!("Rusty Rhythm initialized! 🎵🦀");
 }
