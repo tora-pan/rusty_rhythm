@@ -2,6 +2,12 @@
 
 A rhythm game built in Rust using the [Bevy](https://bevyengine.org/) game engine. Inspired by classic rhythm games like StepMania, but with modern mechanics and smooth Rust performance.
 
+
+
+https://github.com/user-attachments/assets/abb0b5ea-cf9f-435d-abdd-a0ba1e553a5c
+
+
+
 ## 🎮 Game Concept
 
 Rusty Rhythm aims to capture the essence of classic 4-key rhythm games while adding unique features and smooth gameplay. Players hit notes in time with music across various difficulty levels.
